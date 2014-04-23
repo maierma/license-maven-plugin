@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.SortedMap;
 import java.util.SortedSet;
 
@@ -295,7 +296,11 @@ public class AddThirdPartyMojo extends AbstractAddThirdPartyMojo implements Mave
             }
             sb.append("\n-------------------------------------------------------------------------------");
             sb.append("\n Please fill the missing licenses for dependencies :\n\n");
-            getUnsafeMappings().store(writer, sb.toString());
+            if (getUnsafeMappings() == null) {
+              new Properties().store(writer, sb.toString());
+            } else {
+              getUnsafeMappings().store(writer, sb.toString());
+            }
         } finally {
             writer.close();
         }
