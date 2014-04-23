@@ -34,20 +34,7 @@
     <connection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</connection>
     <developerConnection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</developerConnection>
     <url>https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</url>
-  </scm>
-  <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <name>nexus</name>
-      <url>http://repo.netcetera.com/nexus/content/repositories/internal-repository-release</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus</id>
-      <name>nexus</name>
-      <url>http://repo.netcetera.com/nexus/content/repositories/internal-repository-snapshot</url>
-    </snapshotRepository>
-  </distributionManagement>
-  
+  </scm>  
   <inceptionYear>2010</inceptionYear>
   <prerequisites>
     <maven>2.2.1</maven>
