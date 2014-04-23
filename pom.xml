@@ -19,9 +19,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.kuali.pom</groupId>
-    <artifactId>kuali-maven</artifactId>
-    <version>1.3.1</version>
+    <groupId>com.netcetera.nca-301-5.maven.pom</groupId>
+    <artifactId>nca-parent</artifactId>
+    <version>6.2</version>
   </parent>
   <groupId>org.kuali.maven.plugins</groupId>
   <artifactId>license-maven-plugin</artifactId>
@@ -34,20 +34,7 @@
     <connection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</connection>
     <developerConnection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</developerConnection>
     <url>https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</url>
-  </scm>
-  <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <name>nexus</name>
-      <url>http://repo.netcetera.com/nexus/content/repositories/internal-repository-release</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus</id>
-      <name>nexus</name>
-      <url>http://repo.netcetera.com/nexus/content/repositories/internal-repository-snapshot</url>
-    </snapshotRepository>
-  </distributionManagement>
-  
+  </scm>  
   <inceptionYear>2010</inceptionYear>
   <prerequisites>
     <maven>2.2.1</maven>
@@ -59,6 +46,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
+      <version>3.1.1.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.nuiton.processor</groupId>
@@ -75,6 +63,39 @@
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
       <version>3.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.3</version>    
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.6.4</version>    
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>    
+      <version>1.6.4</version>
+      <scope>runtime</scope>    
+    </dependency>    
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-compat</artifactId>
+      <version>3.0.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
