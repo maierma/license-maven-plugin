@@ -1,0 +1,7 @@
+Changes introduced based on the public 1.6.4 version
+====================================================
+[mma] ?
+[msr] NCA parent POM in order to cut proper releases which are uploaded to NCA Nexus
+[msr] adding dependencies explicitly that used to be provided by the kuali.org parent POM
+[msr] adding ncabuild.xml
+[msr] fixing NPE in AddThirdPartyMojo.java, lines 299-303 -> patch submitted to kuali.org
