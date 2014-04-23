@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2010-2013 The Kuali Foundation
+
+    Licensed under the Educational Community License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.opensource.org/licenses/ecl2.php
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.codehaus.mojo.license.test</groupId>
+  <artifactId>test-MOJO-1716</artifactId>
+  <version>@pom.version@</version>
+
+  <name>License Test :: MOJO-1716</name>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>child1</module>
+    <module>child2</module>
+  </modules>
+
+  <licenses>
+    <license>
+      <name>The GNU Lesser General Public License, Version 3.0</name>
+      <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <license.verbose>true</license.verbose>
+    <license.useMissingFile>true</license.useMissingFile>
+    <license.deployMissingFile>false</license.deployMissingFile>
+    <license.useRepositoryMissingFiles>false</license.useRepositoryMissingFiles>
+  </properties>
+
+  <dependencyManagement>
+
+    <dependencies>
+      
+      <!-- this dependency is a bundle type -->
+      <dependency>
+        <groupId>org.springframework.ws</groupId>
+        <artifactId>spring-oxm</artifactId>
+        <version>1.5.8</version>
+      </dependency>
+      
+      <!-- this dependency is a ejb type -->
+      <dependency>
+        <groupId>org.jboss.seam</groupId>
+        <artifactId>jboss-seam</artifactId>
+        <version>2.2.0.GA</version>
+      </dependency>
+
+      <!-- a -resources.zip dep -->
+      <dependency>
+        <groupId>net.sf.docbook</groupId>
+        <artifactId>docbook-xsl</artifactId>
+        <version>1.76.1</version>
+        <classifier>resources</classifier>
+        <type>zip</type>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>@pom.version@</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
+
+

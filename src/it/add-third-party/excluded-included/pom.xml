@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2010-2013 The Kuali Foundation
+
+    Licensed under the Educational Community License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.opensource.org/licenses/ecl2.php
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.codehaus.mojo.license.test</groupId>
+  <artifactId>excluded-included</artifactId>
+  <version>1.0</version>
+
+  <name>License Test :: excluded-included</name>
+
+  <url>no-url</url>
+  <properties>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <license.verbose>true</license.verbose>
+  </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.nuiton</groupId>
+      <artifactId>maven-helper-plugin</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuiton</groupId>
+      <artifactId>nuiton-utils</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>@pom.version@</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>exclude-scope-filter</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <excludedScopes>test</excludedScopes>
+              <thirdPartyFilename>thirdWithoutScope.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>include-scope-filter</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <includedScopes>test</includedScopes>
+              <thirdPartyFilename>thirdWithScope.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>group-filter</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <excludedGroups>org\.nuiton.*</excludedGroups>
+              <thirdPartyFilename>thirdWithoutGroup.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>artifact-filter</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <excludedArtifacts>nuiton-i18n</excludedArtifacts>
+              <thirdPartyFilename>thirdWithoutArtifact.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>artifact-off-over-group-on</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <includedGroups>org\.nuiton</includedGroups>
+              <excludedArtifacts>nuiton-utils|nuiton-i18n</excludedArtifacts>
+              <thirdPartyFilename>thirdWithGroupWithoutArtifact.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>artifact-on-over-group-off</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <excludedGroups>org\.nuiton</excludedGroups>
+              <includedArtifacts>nuiton-utils|nuiton-i18n</includedArtifacts>
+              <thirdPartyFilename>thirdWithoutGroupWithArtifact.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>artifact-on-over-group-on</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <includedGroups>org\.nuiton</includedGroups>
+              <includedArtifacts>nuiton-utils</includedArtifacts>
+              <thirdPartyFilename>thirdWithGroupWithArtifact.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+          <execution>
+            <id>artifact-off-over-group-off</id>
+            <goals>
+              <goal>add-third-party</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <excludedGroups>org\.nuiton</excludedGroups>
+              <excludedArtifacts>nuiton-i18n</excludedArtifacts>
+              <thirdPartyFilename>thirdWithoutGroupWithoutArtifact.txt</thirdPartyFilename>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+
+

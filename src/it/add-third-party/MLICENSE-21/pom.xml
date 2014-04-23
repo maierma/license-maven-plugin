@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2010-2013 The Kuali Foundation
+
+    Licensed under the Educational Community License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.opensource.org/licenses/ecl2.php
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.codehaus.mojo.license.test</groupId>
+  <artifactId>test-MOJO-1714</artifactId>
+  <version>@pom.version@</version>
+
+  <name>License Test :: MOJO-1714</name>
+  <packaging>pom</packaging>
+  
+  <modules>
+    <module>child1</module>
+    <module>child2</module>
+  </modules>
+
+  <licenses>
+    <license>
+      <name>The GNU Lesser General Public License, Version 3.0</name>
+      <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <license.verbose>true</license.verbose>
+    <license.useMissingFile>true</license.useMissingFile>
+    <license.deployMissingFile>true</license.deployMissingFile>
+    <license.useRepositoryMissingFiles>true</license.useRepositoryMissingFiles>
+    <license.failIfWarning>true</license.failIfWarning>
+  </properties>
+
+  <dependencyManagement>
+
+    <dependencies>
+      <!-- this dependency has no license -->
+      <dependency>
+        <groupId>commons-primitives</groupId>
+        <artifactId>commons-primitives</artifactId>
+        <version>1.0</version>
+      </dependency>
+    </dependencies>
+    
+  </dependencyManagement>
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>@pom.version@</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
+
+
