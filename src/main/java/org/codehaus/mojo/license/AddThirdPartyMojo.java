@@ -254,7 +254,7 @@ public class AddThirdPartyMojo extends AbstractAddThirdPartyMojo implements Mave
             throw new MojoFailureException("There is at least one dependency with no license information");
         }
 
-        if (!unsafe && isUseMissingFile() && MapUtils.isEmpty(getUnsafeMappings()) && getMissingFile().exists()) {
+        if (!unsafe && !isUseMissingFile() && MapUtils.isEmpty(getUnsafeMappings()) && getMissingFile().exists()) {
 
             // there is no missing dependencies, but still a missing file, delete it
             getLog().debug("There is no dependency to put in missing file, delete it at " + getMissingFile());
