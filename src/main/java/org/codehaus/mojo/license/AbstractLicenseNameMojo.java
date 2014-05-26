@@ -40,6 +40,16 @@ public abstract class AbstractLicenseNameMojo
      * @since 1.0
      */
     private String licenseResolver;
+    
+    /**
+     * To specify external extra licenses repository resolvers (says the base
+     * urls of the repositories where the {@code license.properties} is present).
+     * This overrules the "${license.licenseResolver}"
+     *
+     * @parameter expression="${license.licenseResolvers}"
+     * @since 1.6.4-nca-2
+     */
+    private String[] licenseResolvers;
 
     /**
      * A flag to keep a backup of every modified file.
@@ -104,9 +114,13 @@ public abstract class AbstractLicenseNameMojo
         {
             return;
         }
+        
+        if (getLicenseResolvers() == null) {
+          setLicenseResolvers(new String[] {licenseResolver});
+        }          
 
         // init licenses store
-        licenseStore = LicenseStore.createLicenseStore( getLog(), getLicenseResolver() );
+        licenseStore = LicenseStore.createLicenseStore( getLog(), getLicenseResolvers() );
 
         // check licenseName exists
         license = getLicense( licenseName, true );
@@ -147,6 +161,12 @@ public abstract class AbstractLicenseNameMojo
     {
         return licenseResolver;
     }
+    
+    public String[] getLicenseResolvers()
+    {
+        return licenseResolvers;
+    }
+
 
     public LicenseStore getLicenseStore()
     {
@@ -166,6 +186,11 @@ public abstract class AbstractLicenseNameMojo
     public void setLicenseResolver( String licenseResolver )
     {
         this.licenseResolver = licenseResolver;
+    }
+    
+    public void setLicenseResolvers( String[] licenseResolvers )
+    {
+        this.licenseResolvers = licenseResolvers;
     }
 
     public void setLicenseName( String licenseName )

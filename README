@@ -5,3 +5,4 @@ Changes introduced based on the public 1.6.4 version
 [msr] adding dependencies explicitly that used to be provided by the kuali.org parent POM
 [msr] adding ncabuild.xml
 [msr] fixing NPE in AddThirdPartyMojo.java, lines 299-303 -> patch submitted to kuali.org
+[mma] added licenseResolvers property to AbstractLicenseNameMojo.java, lines 45-55, 118-123, 165-170, 191-195 -> patch submitted to kuali.org
