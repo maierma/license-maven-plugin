@@ -115,7 +115,7 @@ public abstract class AbstractLicenseNameMojo
             return;
         }
         
-        if (getLicenseResolvers() == null) {
+        if (getLicenseResolvers() == null || getLicenseResolvers().length == 0) {
           setLicenseResolvers(new String[] {licenseResolver});
         }          
 
