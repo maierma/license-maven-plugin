@@ -27,13 +27,13 @@
   <artifactId>license-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>License Maven Plugin</name>
-  <version>1.6.4-nca-2-SNAPSHOT</version>
+  <version>1.6.4-nca-2</version>
   <description>Maven plugin to download and collect license files from project dependencies.</description>
   <url>http://${kuali.site.hostname}/maven/plugins/${project.artifactId}/${project.version}</url>
   <scm>
-    <connection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</connection>
-    <developerConnection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</developerConnection>
-    <url>https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/trunk</url>
+    <connection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/tags/license-maven-plugin-1.6.4-nca-2</connection>
+    <developerConnection>scm:svn:https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/tags/license-maven-plugin-1.6.4-nca-2</developerConnection>
+    <url>https://buildcrew.extranet.netcetera.biz/nca-301-5/svn/maven/plugins/org.kuali.maven-license-maven-plugin/tags/license-maven-plugin-1.6.4-nca-2</url>
   </scm>  
   <inceptionYear>2010</inceptionYear>
   <prerequisites>
