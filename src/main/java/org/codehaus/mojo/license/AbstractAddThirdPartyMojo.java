@@ -286,19 +286,23 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
             return resource.getInputStream();
         }
     }
-
+    
     protected File copyToFileSystem(String location) {
-        File temp = new File(getProject().getBuild().getDirectory() + "/license/THIRD-PARTY.properties");
-        return copyToFileSystem(location, temp);
+        return this.copyToFileSystem(location, false);
     }
 
-    protected File copyToFileSystem(String location, File file) {
+    protected File copyToFileSystem(String location, Boolean append) {
+        File temp = new File(getProject().getBuild().getDirectory() + "/license/THIRD-PARTY.properties");
+        return copyToFileSystem(location, temp, append);
+    }
+
+    protected File copyToFileSystem(String location, File file, Boolean append) {
         InputStream in = null;
         OutputStream out = null;
         try {
             in = getInputStream(location);
-            out = FileUtils.openOutputStream(file);
-            IOUtils.copy(in, out);
+            out = FileUtils.openOutputStream(file, append);
+            IOUtils.copy(in, out);            
             getLog().debug("Copied " + location + " to " + file);
             return file;
         } catch (IOException e) {
@@ -315,7 +319,14 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
             // The artifact->license mapping file might be a URL, not a file
             // This call always copies the mapping file from wherever it is to target/license/THIRD-PARTY.properties
             // This way we are guaranteed to have a local copy of the mapping file to work with
-            File propertiesFile = copyToFileSystem(getArtifactLicenseMapping());
+            Boolean append = false;  
+            
+            if (getMissingFile().exists()) {
+              append = getMissingFile().exists(); // in case ${license.missingFile} is set as well as ${license.artifactLicenseMapping} merge them;
+              copyToFileSystem(getMissingFile().getPath());
+            }
+            
+            File propertiesFile = copyToFileSystem(getArtifactLicenseMapping(), append);
             // "missingFile" contains a mapping between Maven GAV's and their corresponding license
             setMissingFile(propertiesFile);
         }
