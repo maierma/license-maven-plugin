@@ -21,7 +21,7 @@
   <parent>
     <groupId>com.netcetera.nca-301-5.maven.pom</groupId>
     <artifactId>nca-parent</artifactId>
-    <version>6.2</version>
+    <version>6.5</version>
   </parent>
   <groupId>org.kuali.maven.plugins</groupId>
   <artifactId>license-maven-plugin</artifactId>
@@ -40,7 +40,9 @@
     <maven>2.2.1</maven>
   </prerequisites>
   <properties>
+    <nca.project.id>nca-301-5</nca.project.id>
     <maven.test.skip>true</maven.test.skip>
+    <license-maven-plugin.version>1.6.4-nca-5</license-maven-plugin.version>
   </properties>
   <dependencies>
     <dependency>
