@@ -56,6 +56,21 @@ public class UpdateProjectLicenseMojo
      * @since 1.0
      */
     protected File outputDirectory;
+    
+    /**
+     * A flag to stop creating license file in project root of resource directory
+     * <p/>
+     * This is usefull to skip license information in root of package if you use
+     * license information generated for bundle
+     * <p/>
+     * If sets to {@code true}, will not copy license file from
+     * {@link #outputDirectory} to root of classes directory
+     * 
+     *  @parameter expression="${license.skipProjectLicense}" default-value="false"
+     *  @since 1.6-nca-7
+     * 
+     */
+    protected boolean skipProjectLicense;
 
     /**
      * A flag to copy the main license file in a bundled place.
@@ -168,13 +183,14 @@ public class UpdateProjectLicenseMojo
 
         if ( hasClassPath() )
         {
-
-            // copy the license file to the resources directory
             File resourceTarget = new File( getOutputDirectory(), target.getName() );
-            FileUtil.copyFile( getLicenseFile(), resourceTarget );
-
-            addResourceDir( getOutputDirectory(), "**/" + resourceTarget.getName() );
-
+            if (!skipProjectLicense()) 
+            {
+                // copy the license file to the resources directory
+                FileUtil.copyFile( target, resourceTarget );
+    
+                addResourceDir( getOutputDirectory(), "**/" + resourceTarget.getName() );
+            }
             if ( isGenerateBundle() )
             {
 
@@ -182,7 +198,7 @@ public class UpdateProjectLicenseMojo
                 File bundleTarget = FileUtil.getFile( getOutputDirectory(), getBundleLicensePath() );
                 FileUtil.copyFile( target, bundleTarget );
 
-                if ( !resourceTarget.getName().equals( bundleTarget.getName() ) )
+                if ( !resourceTarget.getName().equals( bundleTarget.getName() ) | !resourceTarget.exists() )
                 {
 
                     addResourceDir( getOutputDirectory(), "**/" + bundleTarget.getName() );
@@ -191,6 +207,11 @@ public class UpdateProjectLicenseMojo
 
 
         }
+    }
+    
+    public boolean skipProjectLicense()
+    {
+        return skipProjectLicense;
     }
 
     public File getLicenseFile()

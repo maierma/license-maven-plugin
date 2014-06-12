@@ -7,3 +7,6 @@ Changes introduced based on the public 1.6.4 version
 [msr] fixing NPE in AddThirdPartyMojo.java, lines 299-303 -> patch submitted to kuali.org
 [mma] added licenseResolvers property to AbstractLicenseNameMojo.java, lines 45-55, 118-123, 165-170, 191-195 -> patch submitted to kuali.org
 [mma] added fix in AbstractAddThirdPartyMojo.java to support ${license.missingFile} as well as ${license.artifactLicenseMapping} at same time, lines 322-329, 290-304  -> patch submitted to kuali.org
+[mma] added new property skipProjectLicense in UpdateProjectLicenseMojo.java to control if LICENSE.txt should be created in root of package
+[mma] added new property skipProjectThirdParty in AbstractAddThirdPartyMojo.java + AddThirdPartyMojo.java to control if THIRD-PARTY.txt should be created in root of package.
+[mma] changed property thirdPartyFilename to thirdPartyFile in AbstractAddThirdPartyMojo.java to have same behavior and settings as for creation of LICENSE.txt 

@@ -64,11 +64,11 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
     /**
      * File where license information for third party dependencies gets stored
      *
-     * @parameter expression="${license.thirdPartyFilename}" default-value="THIRD-PARTY.txt"
+     * @parameter expression="${license.thirdPartyFile}" default-value="${basedir}/THIRD-PARTY.txt"
      * @required
      * @since 1.0
      */
-    protected String thirdPartyFilename;
+    protected File thirdPartyFile;
 
     /**
      * A flag to use the missing licenses file to consolidate the THID-PARTY file.
@@ -114,6 +114,21 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
      * @since 1.0
      */
     protected List<String> licenseMerges;
+    
+    /**
+     * A flag to stop creating third party file in project root of resource directory
+     * <p/>
+     * This is usefull to skip third party information in root of package if you use
+     * third party license information generated for bundle
+     * <p/>
+     * If sets to {@code true}, will not copy third party license file from
+     * {@link #outputDirectory} to root of classes directory
+     * 
+     *  @parameter expression="${license.skipProjectThirdParty}" default-value="false"
+     *  @since 1.6-nca-7
+     * 
+     */
+    protected boolean skipProjectThirdParty;
 
     /**
      * The path of the bundled third party file to produce when {@link #generateBundle} is on.
@@ -236,8 +251,6 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
 
     private SortedSet<MavenProject> unsafeDependencies;
 
-    private File thirdPartyFile;
-
     private SortedProperties unsafeMappings;
 
     private boolean doGenerate;
@@ -338,10 +351,8 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
         }
 
         // This is the file that gets bundled into the jar as META-INF/THIRD-PARTY.txt
-        // It contains the aggregated list of licenses/jar's this project depends on
-        File file = new File(getOutputDirectory(), getThirdPartyFilename());
-
-        setThirdPartyFile(file);
+        // It contains the aggregated list of licenses/jar's this project depends on        
+        File file = getThirdPartyFile();
 
         long buildTimestamp = getBuildTimestamp();
 
@@ -534,9 +545,9 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
     public File getOutputDirectory() {
         return outputDirectory;
     }
-
-    public String getThirdPartyFilename() {
-        return thirdPartyFilename;
+    
+    public boolean skipProjectThirdParty() {
+        return skipProjectThirdParty;
     }
 
     public String getBundleThirdPartyPath() {
@@ -573,10 +584,6 @@ public abstract class AbstractAddThirdPartyMojo extends AbstractLicenseMojo {
 
     public void setOutputDirectory(File outputDirectory) {
         this.outputDirectory = outputDirectory;
-    }
-
-    public void setThirdPartyFilename(String thirdPartyFilename) {
-        this.thirdPartyFilename = thirdPartyFilename;
     }
 
     public void setBundleThirdPartyPath(String bundleThirdPartyPath) {

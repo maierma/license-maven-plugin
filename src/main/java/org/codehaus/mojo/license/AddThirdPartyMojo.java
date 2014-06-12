@@ -269,8 +269,32 @@ public class AddThirdPartyMojo extends AbstractAddThirdPartyMojo implements Mave
             getLog().debug("Will deploy third party file from " + file);
             getThirdPartyTool().attachThirdPartyDescriptor(getProject(), file);
         }
+        
+        
+        if ( hasClassPath() )
+        {
+            File target = getThirdPartyFile();
+            File resourceTarget = new File( getOutputDirectory(), target.getName() );
+            if (!skipProjectThirdParty()) 
+            {
+                // copy the license file to the resources directory
+                FileUtil.copyFile( target, resourceTarget );
+    
+                addResourceDir( getOutputDirectory(), "**/" + resourceTarget.getName() );
+            }
+            if ( isGenerateBundle() )
+            {
 
-        addResourceDir(getOutputDirectory(), "**/*.txt");
+                // creates the bundled license file
+                File bundleTarget = FileUtil.getFile( getOutputDirectory(), getBundleThirdPartyPath() );
+                FileUtil.copyFile( target, bundleTarget );
+               
+                if ( !resourceTarget.getName().equals( bundleTarget.getName() ) | !resourceTarget.exists() ) {
+                  
+                    addResourceDir( getOutputDirectory(), "**/" + bundleTarget.getName() );
+                }
+            }
+        }
     }
 
     protected void writeMissingFile() throws IOException {
