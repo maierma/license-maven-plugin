@@ -42,7 +42,7 @@
   <properties>
     <nca.project.id>nca-301-5</nca.project.id>
     <maven.test.skip>true</maven.test.skip>
-    <license-maven-plugin.version>1.6.4-nca-8</license-maven-plugin.version>
+    <license-maven-plugin.version>1.6.4-nca-9</license-maven-plugin.version>
   </properties>
   <dependencies>
     <dependency>
