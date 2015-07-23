@@ -1,8 +1,12 @@
+License Maven Plugin
+====================================================
+
 [![Build Status](https://travis-ci.org/netceteragroup/license-maven-plugin.svg?branch=master)](https://travis-ci.org/netceteragroup/license-maven-plugin)
+[![Coverage Status](https://coveralls.io/repos/netceteragroup/license-maven-plugin/badge.svg?branch=master&service=github)](https://coveralls.io/github/netceteragroup/license-maven-plugin?branch=master)
 
 The original version of this fork is hosted on Kuali.org [https://svn.kuali.org/repos/foundation/tags/license-maven-plugin-1.6.4/]
 
-Changes introduced based on the public 1.6.4 version
+Changes introduced:
 ====================================================
 * added classpath search for license resolver in LicenseStore.java, lines 51-57 and 180-194
 * fixing NPE in AddThirdPartyMojo.java, lines 299-303
