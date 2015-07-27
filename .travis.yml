@@ -4,4 +4,6 @@ jdk:
   - oraclejdk7
   - oraclejdk8
 after_success:
-- mvn clean test jacoco:report coveralls:jacoco
+  - mvn clean test jacoco:report coveralls:report
+env:
+  secure: "LoOSwn3z6nqrlDmsV5DhiSKb1j1KeFzjIccOZvqNjgSn+pp95lU6uWyNRvsydh1vzFMCpn8tEe5wvldE9BO05fm/3r7KH2NztbWWZt/km0vLpda9XieWnyLDGNWt85irVVvKSB2VHvCzgiQW5TtycQOOpsowZV6piFnIFT3VMyE="
